@@ -52,7 +52,7 @@ public class Bagels {
     // this function generates 3 digit random numbers and convert it to string to be checked later
     private func generateSecretNumber() {
         
-        print("Hello, I am thinking of 3 numbers, Guess it")
+        print("Hello, I have a number on mind, Guess that number")
         // generate 3 random numbers
         first = Int(arc4random_uniform(9)+1)
         second = Int(arc4random_uniform(9)+1)
@@ -63,21 +63,19 @@ public class Bagels {
         // all digits must be different and the first number cannot be 0
         while (first == second || first == third || second == third || first == 0) {
             first = Int(arc4random_uniform(9)+1)
-            second = Int(arc4random_uniform(9)+1)
-            third = Int(arc4random_uniform(9)+1)
+            second = Int(arc4random_uniform(10))
+            third = Int(arc4random_uniform(10))
             print ("the numbers are in side while: \(first)\(second)\(third)")
         }
         
         // turn the secret number to be a string so its easy to compare it with user's guess which is also a string
-        
         firstString = String(first)
         secondString = String(second)
         thirdString = String(third)
         
         secretNum = firstString+secondString+thirdString
         
-        //return secretNum
-        
+        // test the secret number
         print("Secret number is \(secretNum)")
         
     }
@@ -161,7 +159,7 @@ public class Bagels {
             isPlaying = true;
             numOfGuess = 0 // reset the guess counter
         } else {
-            print ("Thanks for playing")
+            print ("Thanks for playing!")
             exit(0)
         }
     }
