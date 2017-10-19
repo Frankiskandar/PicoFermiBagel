@@ -10,7 +10,6 @@ import Foundation
 
 public class Bagels {
  
-    
     var first:Int
     var second:Int
     var third:Int
@@ -37,15 +36,16 @@ public class Bagels {
     
 
     public func playGame() {
-        
         repeat {
+            // generate 3 digit numbers
             generateSecretNumber()
             while isPlaying == true {
+                // get user input and check the guess
                 evaluateGuess()
             }
+            // ask the user if the want to play again or quit
             playAgain()
-            
-        } while true
+        } while true // can only get out of the loop if the user quits
         
     }
 
@@ -75,6 +75,8 @@ public class Bagels {
         
         secretNum = firstString+secondString+thirdString
         
+        //secretNum = "482"
+        
         // test the secret number
         print("Secret number is \(secretNum)")
         
@@ -93,6 +95,7 @@ public class Bagels {
             self.guess = readLine()!;
         }
         
+        // here means the user has tried to guess once
         numOfGuess += 1
         //check if the guess is the same as secretNum
         if guess == secretNum {
@@ -108,23 +111,20 @@ public class Bagels {
             if guess[guess.index(guess.startIndex, offsetBy: i)] == secretNum[secretNum.index(secretNum.startIndex, offsetBy: i)]
             {
                 print("Fermi ",terminator: "")
-                fermiScore += 1;
+                fermiScore += 1; //update fermi score
             }
             
             //check for Pico
             for j in 0..<guess.count {
-                
-                //make sure the program does not recognize a Fermi as Peco
                 if guess[guess.index(guess.startIndex, offsetBy: i)] == secretNum[secretNum.index(secretNum.startIndex, offsetBy: j)]
                 {
-                    picoScore += 1 //update the score
+                    picoScore += 1 //update pico score
                 }
-            }
-            
-
-            
-        } //end for
+            } // enf for pico
+         
+        } //end for fermi
         
+        //make sure the program does not recognize a Fermi as Peco
         if picoScore > fermiScore {
             var diff = picoScore - fermiScore
             for _ in 1...diff {
@@ -132,6 +132,7 @@ public class Bagels {
             }
         }
         
+        // if there is no pico or fermi, it means bagel
         if (picoScore == 0 && fermiScore == 0)
         {
             print("Bagels ",terminator: "");
@@ -140,7 +141,6 @@ public class Bagels {
         //reset the score each loop
         fermiScore = 0
         picoScore = 0
-        
     }
     
     //This function checks if the user wants to play or quit the game after they win
@@ -158,7 +158,7 @@ public class Bagels {
         if play == "Y" {
             isPlaying = true;
             numOfGuess = 0 // reset the guess counter
-        } else {
+        } else { // if the user enters "N" exit the program
             print ("Thanks for playing!")
             exit(0)
         }
